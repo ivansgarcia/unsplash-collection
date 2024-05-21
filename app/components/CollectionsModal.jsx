@@ -21,32 +21,32 @@ const CollectionsModal = ({ id, thumb, showModal, setShowModal, collections, set
 
     return (
         <dialog open={showModal}>
-                <div className="flex flex-col w-[35rem] bg-white rounded p-4 gap-4  z-20 relative">
-                    <header className="font-bold text-lg">Add to Collections</header>
+                <div className="flex flex-col w-[35rem] bg-white rounded p-5 gap-4 z-20 relative">
+                    <header className="font-bold text-xl">Add to Collections</header>
                     <input
                         onKeyDown={(e) => e.key === 'Enter' && null}
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
-                        className="max-w-[600px] bg-[url('../public/Search.svg')] bg-no-repeat bg-right bg-contain w-full my-2 shadow border border-gray-light p-4 rounded-lg"
+                        className="max-w-[600px] bg-[url('../public/Search.svg')] bg-no-repeat bg-[center_right_1rem] bg-auto w-full my-2 shadow border border-gray-light p-4 rounded-lg"
                         type="text"
-                        placeholder="Enter your keywords..."
+                        placeholder="Find Collection..."
                     />
                     <CreateCollection showModal={showModal} collections={collections} setCollections={setCollections} />
-                    <p className="text-xs text-dark">{filteredNotIncludedCollections.length} matches</p>
-                    <ul className="flex flex-col gap-8 w-full">
+                    {filter && <p className="text-xs text-dark">{filteredNotIncludedCollections.length} matches</p>}
+                    <ul className="flex flex-col gap-4 w-full">
                         {filteredNotIncludedCollections.map((collection, index) => (
-                            <li key={index} className="flex gap-4 w-full items-center">
-                                <Image className="object-cover w-10 h-10" src={collection.preview} alt={collection.title} width={40} height={40}/>
+                            <li key={index} className="group flex gap-4 w-full items-center hover:bg-gray-semi p-2.5 rounded">
+                                <Image className="object-cover w-16 h-16 rounded" src={collection.preview} alt={collection.title} width={50} height={50}/>
                                 <div>
                                     <p>{collection.title}</p>
                                     <p>{collection.photos.length} photos</p>
                                 </div>
-                                <button onClick={() => addToCollection(collection)} className="flex items-center gap-2 ml-auto">
+                                <button onClick={() => addToCollection(collection)} className="hidden group-hover:flex items-center gap-2 ml-auto text-xs active:scale-95 transition-transform">
                                     <Image
                                         src={plusIcon}
                                         alt="add"
-                                        width={20}
-                                        height={20}
+                                        width={15}
+                                        height={15}
                                     />
                                     <span>Add to Collection</span>
                                 </button>

@@ -14,12 +14,11 @@ const CreateCollection = ({ collections, setCollections, showModal }) => {
             name = name + '_new';
         }
         const newCollections = [...collections, { title: name, photos: [], preview: '/empty.png' }];
-        console.log('new collection', name);
         setCollections(newCollections);
         setNamingCollection(false);
     }
     return (
-        <>
+        <div className="py-4 px-4 hover:bg-gray-semi rounded">
             {namingCollection ? (
                 <div className="flex gap-4 items-center">
                     <p>New Collection name: </p>
@@ -28,12 +27,12 @@ const CreateCollection = ({ collections, setCollections, showModal }) => {
                     />
                 </div>
             ) : (
-                <button className="flex gap-4 items-center" onClick={() => setNamingCollection(true)}>
+                <button className="flex gap-4 items-center active:scale-95 transition-transform" onClick={() => setNamingCollection(true)}>
                     <Image src={plusIcon} alt="create" width={20} height={20} />
                     <p>Create Collection</p>
                 </button>
             )}
-        </>
+        </div>
     );
 };
 

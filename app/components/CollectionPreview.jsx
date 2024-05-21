@@ -24,7 +24,7 @@ const CollectionPreview = ({ photos }) => {
     const size = previewImages.length;
 
     return (
-        <div className={`rounded overflow-hidden w-96 h-64 grid ${size === 1 && 'grid-cols-1 grid-rows-1'} ${size === 2 && 'grid-cols-2 grid-rows-1'} ${size > 2 && 'grid-cols-3 grid-rows-2'} ${size > 0 && 'gap-1'}`}>
+        <div className={`rounded group-hover:scale-105 group-active:scale-100 transition-transform overflow-hidden w-96 h-64 grid ${size === 1 && 'grid-cols-1 grid-rows-1'} ${size === 2 && 'grid-cols-2 grid-rows-1'} ${size > 2 && 'grid-cols-3 grid-rows-2'} ${size > 0 && 'gap-1'}`}>
             {previewImages.map((image, index) => (
                 <Image key={index} className={`${index === 0 && 'row-span-2'} ${size > 2 && index === 0 && 'col-span-2'} ${size > 2 && index > 0 && 'col-span-1 row-span-1'} ${!photos.length ? 'object-scale-down' : 'object-cover'} w-full h-full`} src={image} alt="preview" width={300} height={200}/>
 

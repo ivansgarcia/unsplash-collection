@@ -164,7 +164,7 @@ const Viewer = ({ searchParams }) => {
                 <div className="flex gap-4">
                     <button
                         onClick={() => setShowModal(true)}
-                        className="flex items-center bg-gray-light py-2 px-4 rounded gap-2 text-sm font-semibold"
+                        className="active:scale-95 flex items-center bg-gray-light py-2 px-4 rounded gap-2 text-sm font-semibold"
                     >
                         <Image
                             src={plusIcon}
@@ -176,7 +176,7 @@ const Viewer = ({ searchParams }) => {
                     </button>
                     <button
                         onClick={download}
-                        className="flex items-center bg-gray-light py-2 px-4 rounded gap-2 text-sm font-semibold"
+                        className="active:scale-95 flex items-center bg-gray-light py-2 px-4 rounded gap-2 text-sm font-semibold"
                     >
                         <Image
                             src={downloadIcon}
@@ -210,7 +210,7 @@ const Viewer = ({ searchParams }) => {
                                     onClick={() =>
                                         removeFromCollection(collection)
                                     }
-                                    className="flex items-center gap-2 ml-auto"
+                                    className="flex items-center gap-2 ml-auto active:scale-95 transition-transform"
                                 >
                                     <Image
                                         src={minusIcon}

@@ -19,7 +19,9 @@ module.exports = {
       "gray-semi": "#E5E7EBCC",
       "gray-light": "#E5E7EB",
       white: "#FFFFFF",
-      transparent: "#FFFFFF00"
+      transparent: "#FFFFFF00",
+      'gradient-start': "#F2C593",
+      'gradient-end': "#8A3282"
     }
   },
   plugins: [],

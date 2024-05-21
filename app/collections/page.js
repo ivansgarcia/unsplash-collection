@@ -15,7 +15,7 @@ const Collections = () => {
 
     return (
         <main className="flex flex-col items-center gap-4 p-8">
-            <h1 className="text-4xl bg-clip-text font-semibold bg-contain text-transparent bg-[url('/gradiend-bg.svg')]">
+            <h1 className="text-4xl bg-clip-text font-semibold bg-contain text-transparent bg-gradient-to-r from-gradient-start to-gradient-end">
                 Collections
             </h1>
             <p className="max-w-[26rem] text-center">
@@ -23,19 +23,20 @@ const Collections = () => {
                 to use under the <a href="">Unsplash License.</a>
             </p>
             {collections.length === 0 ? (
-                <p>No Collections</p>
+                <p className="p-16 text-xl italic">No saved Collections</p>
             ) : (
                 <ul className="flex mt-16 flex-col gap-8 md:flex-row md:flex-wrap items-center justify-center">
                     {collections.map((collection, index) => (
-                        <li key={index} className="flex flex-col gap-4">
+                        <li key={index} className="group flex flex-col gap-4">
                             <Link
                                 href={{
                                     pathname: '/collection',
                                     query: { name: collection.title },
                                 }}
+                                replace
+                                className="transition-transform"
                             >
                                 <CollectionPreview photos={collection.photos} />
-                            </Link>
                             <div>
                                 <p className="font-semibold">
                                     {collection.title}
@@ -44,6 +45,7 @@ const Collections = () => {
                                     {collection.photos.length} photos
                                 </p>
                             </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
