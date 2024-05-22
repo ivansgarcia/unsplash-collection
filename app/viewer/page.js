@@ -28,8 +28,6 @@ const Viewer = ({ searchParams }) => {
         getImageInfo();
     }, [id]);
 
-    currentImage && console.log(currentImage);
-
     useEffect(() => {
         const savedCollections = JSON.parse(
             localStorage.getItem('collections')
@@ -55,8 +53,6 @@ const Viewer = ({ searchParams }) => {
     useEffect(() => {
         localStorage.setItem('collections', JSON.stringify(collections));
     }, [collections]);
-
-    console.log(collections);
 
     const includedCollections = collections.filter((c) =>
         c.photos.includes(id)
@@ -133,14 +129,15 @@ const Viewer = ({ searchParams }) => {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row items-center p-14 gap-14">
+        <div className="flex flex-col lg:flex-row items-center p-4 md:p-14 gap-14">
             {currentImage && (
                 <Image
+                    placeholder="empty"
                     src={currentImage?.urls.full}
                     alt="current"
-                    width={800}
-                    height={400}
-                    className="md:w-1/2"
+                    width={currentImage.width}
+                    height={currentImage.height}
+                    className="md:w-1/2 transition-transform rounded bg-gradient-to-br from-gray-dark to-gray-light"
                 />
             )}
             <div className="flex flex-col gap-4 w-full">
@@ -149,8 +146,8 @@ const Viewer = ({ searchParams }) => {
                         <Image
                             src={currentImage?.user.profile_image.medium}
                             alt="avatar"
-                            width={50}
-                            height={50}
+                            width={40}
+                            height={40}
                             className="rounded-full"
                         />
                     )}
@@ -164,7 +161,7 @@ const Viewer = ({ searchParams }) => {
                 <div className="flex gap-4">
                     <button
                         onClick={() => setShowModal(true)}
-                        className="active:scale-95 flex items-center bg-gray-light py-2 px-4 rounded gap-2 text-sm font-semibold"
+                        className="active:scale-95 flex items-center bg-gray-light py-3 px-5 rounded gap-2 text-sm font-semibold"
                     >
                         <Image
                             src={plusIcon}
@@ -176,7 +173,7 @@ const Viewer = ({ searchParams }) => {
                     </button>
                     <button
                         onClick={download}
-                        className="active:scale-95 flex items-center bg-gray-light py-2 px-4 rounded gap-2 text-sm font-semibold"
+                        className="active:scale-95 flex items-center bg-gray-light py-3 px-5 rounded gap-2 text-sm font-semibold"
                     >
                         <Image
                             src={downloadIcon}
@@ -188,19 +185,19 @@ const Viewer = ({ searchParams }) => {
                     </button>
                 </div>
                 {includedCollections.length > 0 && (
-                    <section className="flex flex-col gap-4">
-                        <h3>Collections</h3>
+                    <section className="flex flex-col gap-4 mt-4">
+                        <h3 className="text-xl font-bold">Collections</h3>
                         {includedCollections.map((collection, index) => (
                             <div
                                 key={index}
-                                className="flex gap-4 w-full items-center"
+                                className="flex gap-4 w-full items-center hover:bg-gray-semi p-2.5 rounded"
                             >
                                 <Image
                                     src={collection.preview}
                                     alt={collection.title}
-                                    width={40}
-                                    height={40}
-                                    className="object-cover w-10 h-10"
+                                    width={50}
+                                    height={50}
+                                    className="object-cover w-14 h-14 rounded"
                                 />
                                 <div>
                                     <p>{collection.title}</p>
@@ -210,13 +207,13 @@ const Viewer = ({ searchParams }) => {
                                     onClick={() =>
                                         removeFromCollection(collection)
                                     }
-                                    className="flex items-center gap-2 ml-auto active:scale-95 transition-transform"
+                                    className="flex items-center gap-2 ml-auto active:scale-95 transition-transform text-xs font-semibold"
                                 >
                                     <Image
                                         src={minusIcon}
                                         alt="remove"
-                                        width={20}
-                                        height={20}
+                                        width={15}
+                                        height={15}
                                     />
                                     <span>Remove</span>
                                 </button>

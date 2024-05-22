@@ -20,8 +20,8 @@ const CollectionsModal = ({ id, thumb, showModal, setShowModal, collections, set
     const filteredNotIncludedCollections = notIncludedCollections.filter(collection => collection.title.toLowerCase().includes(filter.toLowerCase()));
 
     return (
-        <dialog open={showModal}>
-                <div className="flex flex-col w-[35rem] bg-white rounded p-5 gap-4 z-20 relative">
+        <dialog open={showModal} className={`${showModal ? 'flex' : 'hidden'} justify-center items-center`}>
+                <div className="w-[90vw] flex flex-col mb-20 md:w-[35rem] bg-white rounded p-5 gap-4 z-20">
                     <header className="font-bold text-xl">Add to Collections</header>
                     <input
                         onKeyDown={(e) => e.key === 'Enter' && null}
