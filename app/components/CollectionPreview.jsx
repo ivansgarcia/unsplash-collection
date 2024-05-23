@@ -46,12 +46,13 @@ const CollectionPreview = ({ photos, setError }) => {
                         } ${
                             !photos.length
                                 ? 'object-scale-down'
-                                : 'object-cover'
+                                : 'object-cover bg-gradient-to-br from-gray-dark to-gray-light'
                         } w-full h-full`}
                         src={image}
                         alt="preview"
                         width={300}
                         height={200}
+                        placeholder="empty"
                     />
                 ))
                 .slice(0, 3)}

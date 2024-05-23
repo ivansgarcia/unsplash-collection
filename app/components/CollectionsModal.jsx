@@ -5,6 +5,7 @@ import CreateCollection from "./CreateCollection";
 
 const CollectionsModal = ({ id, thumb, showModal, setShowModal, collections, setCollections }) => {
 
+    console.log(collections);
     const [filter, setFilter] = useState('');
 
     const notIncludedCollections = collections ? collections.filter(c => !c.photos.includes(id)) : [];
@@ -21,7 +22,7 @@ const CollectionsModal = ({ id, thumb, showModal, setShowModal, collections, set
 
     return (
         <dialog open={showModal} className={`${showModal ? 'flex' : 'hidden'} justify-center items-center`}>
-                <div className="w-[90vw] flex flex-col mb-20 md:w-[35rem] bg-white rounded p-5 gap-4 z-20">
+                <div className="w-[90vw] flex flex-col md:w-[35rem] bg-white rounded p-5 gap-4 z-20">
                     <header className="font-bold text-xl">Add to Collections</header>
                     <input
                         onKeyDown={(e) => e.key === 'Enter' && null}
@@ -33,7 +34,7 @@ const CollectionsModal = ({ id, thumb, showModal, setShowModal, collections, set
                     />
                     <CreateCollection showModal={showModal} collections={collections} setCollections={setCollections} />
                     {filter && <p className="text-xs text-dark">{filteredNotIncludedCollections.length} matches</p>}
-                    <ul className="flex flex-col gap-4 w-full">
+                    <ul className="flex flex-col gap-4 w-full mb-10">
                         {filteredNotIncludedCollections.map((collection, index) => (
                             <li key={index} className="group flex gap-4 w-full items-center hover:bg-gray-semi p-2.5 rounded">
                                 <Image className="object-cover w-16 h-16 rounded" src={collection.preview} alt={collection.title} width={50} height={50}/>

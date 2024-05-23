@@ -82,7 +82,7 @@ const Results = () => {
                                 >
                                     <Image
                                         placeholder="empty"
-                                        src={result.urls.regular}
+                                        src={result.urls.small}
                                         alt={result.description ?? ''}
                                         width={result.width}
                                         height={result.height}

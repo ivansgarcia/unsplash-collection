@@ -58,16 +58,16 @@ const Collection = ({ searchParams }) => {
                 <p>{collection?.photos.length} photos</p>
                 <button
                     onClick={removeCollection}
-                    className="absolute right-16 top-32 py-2 px-6 rounded bg-gray-semi active:scale-95"
+                    className="md:absolute right-16 top-32 py-2 px-6 rounded bg-gray-semi active:scale-95"
                 >
                     Delete Collection
                 </button>
                 {!error ? (
-                    <ul className="flex flex-wrap items-center justify-center gap-8 p-8">
+                    <ul className="columns-1 md:columns-3 xl:columns-4 gap-6 pt-16 px-8 sm:px-16">
                         {images.map((image, index) => (
                             <li
                                 key={index}
-                                className="rounded-lg overflow-hidden hover:scale-105 active:scale-100 transition-transform"
+                                className="rounded overflow-hidden bg-gradient-to-br from-gray-dark to-gray-light h-auto w-full mb-6 hover:scale-105 active:scale-100 transition-transform"
                             >
                                 <Link
                                     href={{

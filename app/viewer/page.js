@@ -8,12 +8,16 @@ import CollectionsModal from '../components/CollectionsModal';
 import minusIcon from '../../public/Remove.svg';
 
 const Viewer = ({ searchParams }) => {
+    const { id } = searchParams;
     const [currentImage, setCurrentImage] = useState();
     const [showModal, setShowModal] = useState(false);
-    const { id } = searchParams;
-    const [collections, setCollections] = useState(
-        () => JSON.parse(localStorage.getItem('collections')) ?? []
-    );
+    const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+        const savedCollections =
+            JSON.parse(localStorage.getItem('collections')) || [];
+        setCollections(savedCollections);
+    }, []);
 
     useEffect(() => {
         const api = createApi({
@@ -29,29 +33,23 @@ const Viewer = ({ searchParams }) => {
     }, [id]);
 
     useEffect(() => {
-        const savedCollections = JSON.parse(
-            localStorage.getItem('collections')
-        );
+        collections.length && localStorage.setItem('collections', JSON.stringify(collections));
         const fetchImages = async () => {
             const collectionPreviewImages = await Promise.all(
-                savedCollections.map(async (col) => {
+                collections.map(async (col) => {
                     const result = await api.photos.get({
                         photoId: col.photos[0],
                     });
                     return result.response.urls.thumb;
                 })
             );
-            const expandedCollections = savedCollections.map(
+            const expandedCollections = collections.map(
                 (col, i) =>
                     (col = { ...col, preview: collectionPreviewImages[i] })
             );
             fetchImages();
             setCollections(expandedCollections);
         };
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('collections', JSON.stringify(collections));
     }, [collections]);
 
     const includedCollections = collections.filter((c) =>
@@ -128,19 +126,21 @@ const Viewer = ({ searchParams }) => {
         }
     };
 
+    console.log(currentImage);
+
     return (
-        <div className="flex flex-col lg:flex-row items-center p-4 md:p-14 gap-14">
+        <div className="flex w-full flex-col lg:flex-row justify-center items-center lg:items-start p-4 md:px-20 py-12 gap-14">
             {currentImage && (
                 <Image
                     placeholder="empty"
-                    src={currentImage?.urls.full}
+                    src={currentImage?.urls.regular}
                     alt="current"
                     width={currentImage.width}
                     height={currentImage.height}
-                    className="md:w-1/2 transition-transform rounded bg-gradient-to-br from-gray-dark to-gray-light"
+                    className="max-w-[400px] lg:max-w-[50%] w-full transition-transform rounded bg-gradient-to-br from-gray-dark to-gray-light"
                 />
             )}
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex w-full flex-col gap-4 flex-start">
                 <div className="flex items-center gap-4">
                     {currentImage && (
                         <Image
@@ -207,7 +207,7 @@ const Viewer = ({ searchParams }) => {
                                     onClick={() =>
                                         removeFromCollection(collection)
                                     }
-                                    className="flex items-center gap-2 ml-auto active:scale-95 transition-transform text-xs font-semibold"
+                                    className="flex items-center gap-2 ml-auto active:scale-95 transition-transform text-xs font-semibold mx-4"
                                 >
                                     <Image
                                         src={minusIcon}
