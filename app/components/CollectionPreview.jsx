@@ -1,9 +1,12 @@
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { createApi } from 'unsplash-js';
 
 const CollectionPreview = ({ photos, setError }) => {
     const [previewImages, setPreviewImages] = useState([]);
+
+    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         const api = createApi({
@@ -29,7 +32,7 @@ const CollectionPreview = ({ photos, setError }) => {
 
     return (
         <div
-            className={`rounded w-full group-hover:scale-105 group-active:scale-100 transition-transform overflow-hidden max-w-96 h-64 grid ${
+            className={`grid h-64 w-full max-w-96 overflow-hidden rounded transition-transform group-hover:scale-105 group-active:scale-95 md:group-active:scale-100 ${
                 size === 1 && 'grid-cols-1 grid-rows-1'
             } ${size === 2 && 'grid-cols-2 grid-rows-1'} ${
                 size > 2 && 'grid-cols-3 grid-rows-2'
@@ -46,9 +49,15 @@ const CollectionPreview = ({ photos, setError }) => {
                         } ${
                             !photos.length
                                 ? 'object-scale-down'
-                                : 'object-cover bg-gradient-to-br from-gray-dark to-gray-light'
-                        } w-full h-full`}
-                        src={image}
+                                : 'bg-gradient-to-br from-gray-dark to-gray-light object-cover'
+                        } h-full w-full`}
+                        src={
+                            image === '/empty.png'
+                                ? resolvedTheme === 'dark'
+                                    ? '/empty-dark.png'
+                                    : '/empty.png'
+                                : image
+                        }
                         alt="preview"
                         width={300}
                         height={200}

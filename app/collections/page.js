@@ -1,9 +1,8 @@
 'use client';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import CollectionPreview from '../components/CollectionPreview';
 import Link from 'next/link';
-import ServerError from "../components/ServerError";
+import ServerError from '../components/ServerError';
 
 const Collections = () => {
     const [collections, setCollections] = useState();
@@ -17,18 +16,18 @@ const Collections = () => {
 
     return (
         collections && (
-            <main className="flex flex-col items-center gap-4 p-8 pb-32f">
-                <h1 className="text-4xl bg-clip-text font-semibold bg-contain text-transparent bg-gradient-to-r from-gradient-start to-gradient-end">
+            <main className="pb-32f flex flex-col items-center gap-4 p-8">
+                <h1 className="bg-gradient-to-r from-gradient-start to-gradient-end bg-contain bg-clip-text text-4xl font-semibold text-transparent">
                     Collections
                 </h1>
-                <p className="max-w-[26rem] text-center">
+                <p className="max-w-[26rem] text-center dark:text-gray-semi">
                     Explore the world through collections of beautiful photos
                     free to use under the <a href="">Unsplash License.</a>
                 </p>
                 {collections.length === 0 ? (
                     <p className="p-16 text-xl italic">No saved Collections</p>
                 ) : !error ? (
-                    <ul className="flex mt-16 flex-col gap-8 md:flex-row md:flex-wrap items-center justify-center">
+                    <ul className="mt-16 flex flex-col items-center justify-center gap-8 md:flex-row md:flex-wrap">
                         {collections.map((collection, index) => (
                             <li key={index} className="w-full md:w-96">
                                 <Link
@@ -36,15 +35,14 @@ const Collections = () => {
                                         pathname: '/collection',
                                         query: { name: collection.title },
                                     }}
-                                    replace
-                                    className="transition-transform group w-full md:w-auto flex flex-col gap-4"
+                                    className="group flex w-full flex-col gap-4 transition-transform md:w-auto"
                                 >
                                     <CollectionPreview
                                         photos={collection.photos}
                                         setError={setError}
                                     />
                                     <div>
-                                        <p className="font-semibold">
+                                        <p className="font-semibold dark:text-gray-semi">
                                             {collection.title}
                                         </p>
                                         <p className="text-sm text-gray-dark">

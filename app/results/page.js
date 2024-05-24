@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import resultsBg from '../../public/gradiend-bg.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import defaultData from '../utils/defaultData.json';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { createApi } from 'unsplash-js';
 import { useRouter } from 'next/navigation';
-import ServerError from "../components/ServerError";
+import ServerError from '../components/ServerError';
 
 const Results = () => {
     const router = useRouter();
@@ -42,12 +41,10 @@ const Results = () => {
         router.push(`/results?show=${params}&page=${page}`);
     };
 
-    console.log(results);
-
     return (
         <>
             <section className="flex flex-col items-center">
-                <div className="relative w-full h-20 -z-10">
+                <div className="relative -z-10 h-20 w-full">
                     <Image
                         fill
                         src={resultsBg}
@@ -55,43 +52,49 @@ const Results = () => {
                         className="object-cover"
                     />
                 </div>
-                <input
-                    onKeyDown={(e) =>
-                        e.key === 'Enter' && findParams(search, 1)
-                    }
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="max-w-[600px] -mt-8 bg-[url('../public/Search.svg')] bg-no-repeat bg-[center_right_1rem] bg-auto w-[90%] my-2 shadow border border-gray-light p-4 rounded-lg"
-                    type="text"
-                    placeholder="Enter your keywords..."
-                />
+                <div className="my-2 -mt-8 w-[90%] max-w-[600px] rounded-lg bg-dark">
+                    <input
+                        onKeyDown={(e) =>
+                            e.key === 'Enter' && findParams(search, 1)
+                        }
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="w-full rounded-lg border border-gray-light bg-[url('../public/Search.svg')] bg-auto bg-[center_right_1rem] bg-no-repeat p-4 shadow dark:border-gray-dark dark:bg-gray-dark/25 dark:bg-[url('../public/Search-dark.svg')] dark:text-gray-semi focus:dark:outline focus:dark:outline-gray-dark"
+                        type="text"
+                        placeholder="Enter your keywords..."
+                    />
+                </div>
             </section>
             {results &&
                 (!results.length ? (
-                    <p className="text-center m-12">No results</p>
+                    <p className="m-12 text-center">No results</p>
                 ) : (
                     <>
-                        <ul className="columns-1 md:columns-3 xl:columns-4 gap-6 pt-16 px-8 sm:px-16">
+                        <ul className="columns-1 gap-6 px-8 pt-16 sm:px-16 md:columns-3 xl:columns-4">
                             {results.map((result, index) => (
-                                <Link
-                                    href={{
-                                        pathname: '/viewer',
-                                        query: { id: result.id },
-                                    }}
-                                    key={index}
-                                >
-                                    <Image
-                                        placeholder="empty"
-                                        src={result.urls.small}
-                                        alt={result.description ?? ''}
-                                        width={result.width}
-                                        height={result.height}
-                                        className="rounded bg-gradient-to-br from-gray-dark to-gray-light h-auto w-full mb-6 hover:scale-105 active:scale-100 transition-transform"
-                                    />
-                                </Link>
+                                <li key={index}>
+                                    <Link
+                                        href={{
+                                            pathname: '/viewer',
+                                            query: { id: result.id },
+                                        }}
+                                        aria-label={
+                                            result.description ?? 'preview'
+                                        }
+                                    >
+                                        <Image
+                                            placeholder="empty"
+                                            src={result.urls.small}
+                                            alt={result.description ?? ''}
+                                            width={result.width}
+                                            height={result.height}
+                                            className="mb-6 h-auto w-full rounded bg-gradient-to-br from-gray-dark to-gray-light transition-transform hover:scale-105 active:scale-95 md:active:scale-100 dark:from-dark dark:to-gray-dark"
+                                        />
+                                    </Link>
+                                </li>
                             ))}
                         </ul>
-                        <div className="flex gap-4 justify-center p-16">
+                        <div className="flex justify-center gap-4 p-16">
                             {page > 1 && (
                                 <button
                                     onClick={() =>
@@ -100,7 +103,7 @@ const Results = () => {
                                             page - 1
                                         )
                                     }
-                                    className="py-2 px-6 rounded bg-gray-semi active:scale-105"
+                                    className="rounded bg-gray-semi px-6 py-2 active:scale-105 dark:bg-gray-dark/50 dark:text-gray-semi"
                                 >
                                     &lt; Prev
                                 </button>
@@ -113,7 +116,7 @@ const Results = () => {
                                             page + 1
                                         )
                                     }
-                                    className="py-2 px-6 rounded bg-gray-semi active:scale-105"
+                                    className="rounded bg-gray-semi px-6 py-2 active:scale-105 dark:bg-gray-dark/50 dark:text-gray-semi"
                                 >
                                     Next &gt;
                                 </button>
@@ -121,9 +124,7 @@ const Results = () => {
                         </div>
                     </>
                 ))}
-            {error && (
-                <ServerError />
-            )}
+            {error && <ServerError />}
         </>
     );
 };

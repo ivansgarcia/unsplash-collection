@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
-import ServerError from "../components/ServerError";
+import ServerError from '../components/ServerError';
 
 const Collection = ({ searchParams }) => {
     const router = useRouter();
@@ -52,22 +52,22 @@ const Collection = ({ searchParams }) => {
     return (
         collection && (
             <main className="flex flex-col items-center gap-4 p-8">
-                <h1 className="text-4xl bg-clip-text font-semibold bg-contain text-transparent bg-gradient-to-r from-gradient-start to-gradient-end">
+                <h1 className="bg-gradient-to-r from-gradient-start to-gradient-end bg-contain bg-clip-text text-4xl font-semibold text-transparent">
                     {name}
                 </h1>
-                <p>{collection?.photos.length} photos</p>
+                <p className="dark:text-gray-semi">{collection?.photos.length} photos</p>
                 <button
                     onClick={removeCollection}
-                    className="md:absolute right-16 top-32 py-2 px-6 rounded bg-gray-semi active:scale-95"
+                    className="right-16 top-32 rounded bg-gray-semi dark:bg-gray-dark/25 dark:text-gray-light px-6 py-2 active:scale-95 md:absolute"
                 >
                     Delete Collection
                 </button>
                 {!error ? (
-                    <ul className="columns-1 md:columns-3 xl:columns-4 gap-6 pt-16 px-8 sm:px-16">
+                    <ul className={`columns-1 gap-6 px-8 pt-16 sm:px-16 ${images.length > 2 ? 'xl:columns-4 md:columns-3' : images.length === 1 ? '' : 'xl:columns-2 md:columns-2'}`}>
                         {images.map((image, index) => (
                             <li
                                 key={index}
-                                className="rounded overflow-hidden bg-gradient-to-br from-gray-dark to-gray-light h-auto w-full mb-6 hover:scale-105 active:scale-100 transition-transform"
+                                className="mb-6 h-auto w-full overflow-hidden rounded bg-gradient-to-br from-gray-dark to-gray-light transition-transform hover:scale-105 active:scale-100"
                             >
                                 <Link
                                     href={{
