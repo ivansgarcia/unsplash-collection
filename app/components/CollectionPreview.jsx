@@ -32,7 +32,7 @@ const CollectionPreview = ({ photos, setError }) => {
 
     return (
         <div
-            className={`grid h-64 w-full max-w-96 overflow-hidden rounded transition-transform group-hover:scale-105 group-active:scale-95 md:group-active:scale-100 ${
+            className={`grid h-64 w-full max-w-96 overflow-hidden rounded transition group-hover:scale-[1.02] group-hover:shadow-lg group-active:scale-[0.98] group-active:shadow-none md:group-active:scale-100 ${
                 size === 1 && 'grid-cols-1 grid-rows-1'
             } ${size === 2 && 'grid-cols-2 grid-rows-1'} ${
                 size > 2 && 'grid-cols-3 grid-rows-2'

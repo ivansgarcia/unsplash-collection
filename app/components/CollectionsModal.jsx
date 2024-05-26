@@ -66,7 +66,7 @@ const CollectionsModal = ({
                         <li key={index}>
                             <button
                                 onClick={() => addToCollection(collection)}
-                                className="group flex w-full items-center gap-4 rounded p-2.5 text-left hover:bg-gray-semi hover:dark:bg-gray-dark/50 hover:dark:text-gray-semi"
+                                className="group flex w-full items-center gap-4 rounded p-2.5 text-left transition-colors hover:bg-gray-semi hover:dark:bg-gray-dark/50 hover:dark:text-gray-semi"
                             >
                                 <Image
                                     className="h-16 w-16 rounded object-cover"
@@ -81,13 +81,13 @@ const CollectionsModal = ({
                                     width={50}
                                     height={50}
                                 />
-                                <div>
+                                <div className="w-1/3">
                                     <p>{collection.title}</p>
                                     <p className="text-xs">
                                         {collection.photos.length} photos
                                     </p>
                                 </div>
-                                <div className="ml-auto hidden items-center gap-2 text-xs transition-transform active:scale-95 group-hover:flex">
+                                <div className="ml-auto flex items-center gap-2 text-xs transition-transform active:scale-95">
                                     <svg
                                         width="16"
                                         height="16"

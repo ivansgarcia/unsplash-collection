@@ -22,21 +22,21 @@ const Collection = ({ searchParams }) => {
         setCollection(savedCollection);
     }, [name]);
 
-    const api = createApi({
-        accessKey: process.env.NEXT_PUBLIC_UNSPLASH_KEY,
-    });
-
-    const fetchImages = async () => {
-        const images = await Promise.all(
-            collection.photos.map(async (id) => {
-                const result = await api.photos.get({ photoId: id });
-                return result.response.urls.small;
-            })
-        ).catch((e) => setError(true));
-        setImages(images);
-    };
-
-    collection && fetchImages();
+    useEffect(() => {
+        const api = createApi({
+            accessKey: process.env.NEXT_PUBLIC_UNSPLASH_KEY,
+        });
+        const fetchImages = async () => {
+            const images = await Promise.all(
+                collection.photos.map(async (id) => {
+                    const result = await api.photos.get({ photoId: id });
+                    return result.response.urls.small;
+                })
+            ).catch((e) => setError(true));
+            setImages(images);
+        };
+        collection && fetchImages();
+    }, [collection]);
 
     const removeCollection = () => {
         const savedCollections = JSON.parse(
@@ -60,7 +60,7 @@ const Collection = ({ searchParams }) => {
                 </p>
                 <button
                     onClick={removeCollection}
-                    className="right-16 top-32 rounded bg-gray-semi px-6 py-2 active:scale-95 dark:bg-gray-dark/25 dark:text-gray-light md:absolute"
+                    className="right-16 top-32 rounded bg-gray-semi px-6 py-2 active:scale-95 dark:bg-gray-dark/25 dark:text-gray-light md:absolute transition"
                 >
                     Delete Collection
                 </button>
@@ -71,7 +71,7 @@ const Collection = ({ searchParams }) => {
                         {images.map((image, index) => (
                             <li
                                 key={index}
-                                className="mb-6 h-auto w-full overflow-hidden rounded bg-gradient-to-br from-gray-dark to-gray-light transition-transform hover:scale-105 active:scale-100"
+                                className="mb-6 h-auto w-full overflow-hidden rounded bg-gradient-to-br from-gray-dark to-gray-light transition hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:shadow-none"
                             >
                                 <Link
                                     href={{

@@ -34,17 +34,17 @@ export default function Home() {
                 height={797}
             />
             <div className="flex h-[360px] flex-col items-center justify-center gap-3 pt-5 text-center tracking-[-0.1em] dark:text-gray-dark md:w-1/2">
-                <h1 className="-ml-4 text-4xl font-semibold dark:text-gray-semi">
+                <h1 className="md:-ml-4 text-4xl font-semibold dark:text-gray-semi">
                     Search
                 </h1>
-                <p className="-ml-4 tracking-tighter">
+                <p className="md:-ml-4 tracking-tighter">
                     Search high-resolution images from Unsplash
                 </p>
                 <input
                     onKeyDown={(e) => e.key === 'Enter' && findParams(search)}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="m-2 w-full max-w-[94%] rounded-lg border border-gray-light bg-[url('../public/Search.svg')] bg-auto bg-[center_right_1rem] bg-no-repeat p-4 tracking-tighter shadow dark:border-gray-dark dark:bg-gray-dark/25 dark:bg-[url('../public/Search-dark.svg')] dark:text-gray-semi focus:dark:outline focus:dark:outline-gray-dark"
+                    className="m-2 w-full max-w-[94%] rounded-lg border border-gray-light bg-[url('../public/Search.svg')] bg-auto bg-[center_right_1rem] bg-no-repeat p-4 tracking-tight shadow dark:border-gray-dark dark:bg-gray-dark/25 dark:bg-[url('../public/Search-dark.svg')] dark:text-gray-semi focus:dark:outline focus:dark:outline-gray-dark"
                     type="text"
                     placeholder="Enter your keywords..."
                 />

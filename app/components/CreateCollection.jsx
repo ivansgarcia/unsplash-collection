@@ -19,13 +19,13 @@ const CreateCollection = ({ collections, setCollections, showModal }) => {
         setNamingCollection(false);
     };
     return (
-        <div className="rounded px-4 py-4 hover:bg-gray-dark hover:bg-gray-semi hover:dark:text-gray-semi">
+        <div className="rounded px-4 py-4 transition-colors hover:md:bg-gray-semi hover:md:dark:bg-gray-dark/50 hover:md:dark:text-gray-semi">
             {namingCollection ? (
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                     <p>New Collection name: </p>
                     <input
                         maxLength={16}
-                        className="rounded border border-gray-light p-2 dark:border-gray-dark dark:bg-gray-dark/25 focus:dark:outline focus:dark:outline-gray-dark"
+                        className="w-full rounded border border-gray-light p-2 transition-colors dark:border-gray-dark dark:bg-gray-dark/25 focus:dark:outline focus:dark:outline-gray-dark sm:w-auto"
                         type="text"
                         autoFocus
                         onKeyDown={(e) =>

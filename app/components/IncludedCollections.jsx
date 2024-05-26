@@ -39,7 +39,7 @@ const IncludedCollections = ({
                 <button
                     onClick={() => removeFromCollection(collection)}
                     key={index}
-                    className="flex w-full items-center gap-4 rounded p-2.5 text-left hover:bg-gray-semi dark:text-gray-semi hover:dark:bg-gray-dark/50"
+                    className="flex w-full items-center gap-4 rounded p-2.5 text-left transition-colors hover:bg-gray-semi dark:text-gray-semi hover:dark:bg-gray-dark/50"
                 >
                     <Image
                         src={collection.preview}

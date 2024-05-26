@@ -25,7 +25,7 @@ const Collections = () => {
                     free to use under the <a href="">Unsplash License.</a>
                 </p>
                 {collections.length === 0 ? (
-                    <p className="p-16 text-xl italic">No saved Collections</p>
+                    <p className="my-16 text-xl text-center italic text-gradient-end">No collections created</p>
                 ) : !error ? (
                     <ul className="mt-16 flex flex-col items-center justify-center gap-8 md:flex-row md:flex-wrap">
                         {collections.map((collection, index) => (

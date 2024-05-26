@@ -88,7 +88,7 @@ const Results = () => {
                                             alt={result.description ?? ''}
                                             width={result.width}
                                             height={result.height}
-                                            className="mb-6 h-auto w-full rounded bg-gradient-to-br from-gray-dark to-gray-light transition-transform hover:scale-105 active:scale-95 dark:from-dark dark:to-gray-dark md:active:scale-100"
+                                            className="mb-6 h-auto w-full rounded bg-gradient-to-br from-gray-dark to-gray-light transition hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:shadow-none dark:from-dark dark:to-gray-dark md:active:scale-100"
                                         />
                                     </Link>
                                 </li>
@@ -103,7 +103,7 @@ const Results = () => {
                                             page - 1
                                         )
                                     }
-                                    className="rounded bg-gray-semi px-6 py-2 active:scale-105 dark:bg-gray-dark/50 dark:text-gray-semi"
+                                    className="rounded bg-gray-semi px-6 py-2 transition active:scale-105 dark:bg-gray-dark/50 dark:text-gray-semi"
                                 >
                                     &lt; Prev
                                 </button>
@@ -116,7 +116,7 @@ const Results = () => {
                                             page + 1
                                         )
                                     }
-                                    className="rounded bg-gray-semi px-6 py-2 active:scale-105 dark:bg-gray-dark/50 dark:text-gray-semi"
+                                    className="rounded bg-gray-semi px-6 py-2 transition active:scale-105 dark:bg-gray-dark/50 dark:text-gray-semi"
                                 >
                                     Next &gt;
                                 </button>
