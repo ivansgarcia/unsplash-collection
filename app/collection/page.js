@@ -55,15 +55,19 @@ const Collection = ({ searchParams }) => {
                 <h1 className="bg-gradient-to-r from-gradient-start to-gradient-end bg-contain bg-clip-text text-4xl font-semibold text-transparent">
                     {name}
                 </h1>
-                <p className="dark:text-gray-semi">{collection?.photos.length} photos</p>
+                <p className="dark:text-gray-semi">
+                    {collection?.photos.length} photos
+                </p>
                 <button
                     onClick={removeCollection}
-                    className="right-16 top-32 rounded bg-gray-semi dark:bg-gray-dark/25 dark:text-gray-light px-6 py-2 active:scale-95 md:absolute"
+                    className="right-16 top-32 rounded bg-gray-semi px-6 py-2 active:scale-95 dark:bg-gray-dark/25 dark:text-gray-light md:absolute"
                 >
                     Delete Collection
                 </button>
                 {!error ? (
-                    <ul className={`columns-1 gap-6 px-8 pt-16 sm:px-16 ${images.length > 2 ? 'xl:columns-4 md:columns-3' : images.length === 1 ? '' : 'xl:columns-2 md:columns-2'}`}>
+                    <ul
+                        className={`columns-1 gap-6 px-8 pt-16 sm:px-16 ${images.length > 2 ? 'md:columns-3 xl:columns-4' : images.length === 1 ? '' : 'md:columns-2 xl:columns-2'}`}
+                    >
                         {images.map((image, index) => (
                             <li
                                 key={index}

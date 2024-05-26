@@ -39,7 +39,7 @@ const CollectionsModal = ({
             open={showModal}
             className={`${showModal ? 'flex' : 'hidden'} items-center justify-center`}
         >
-            <div className="z-20 flex w-[90vw] flex-col gap-4 rounded bg-white p-5 md:w-[35rem] dark:bg-dark dark:text-gray-dark">
+            <div className="z-20 flex w-[90vw] flex-col gap-4 rounded bg-white p-5 dark:bg-dark dark:text-gray-dark md:w-[35rem]">
                 <header className="text-xl font-bold dark:text-gray-semi">
                     Add to Collections
                 </header>

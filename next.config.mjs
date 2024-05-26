@@ -7,7 +7,10 @@ const nextConfig = {
                 hostname: 'images.unsplash.com'
             }
         ]
-    }
+    },
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
+    },
 };
 
 export default nextConfig;

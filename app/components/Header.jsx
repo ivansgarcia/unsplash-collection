@@ -9,15 +9,16 @@ const Header = () => {
     const pathname = usePathname();
     return (
         <>
-            <header className="flex w-full justify-between py-4 pl-3 text-sm font-semibold sm:px-6 md:px-8 dark:bg-dark">
+            <header className="flex w-full items-center justify-between py-[0.9rem] pl-3 text-sm font-semibold dark:bg-dark sm:px-6 md:pl-8 md:pr-8">
                 <Image
-                    className="w-32"
+                    priority
+                    className="h-6 w-[7.4rem]"
                     src={logo}
                     alt="UnsplashBox"
                     width={118}
                     height={24}
                 />
-                <div className="flex flex-wrap justify-end px-2 md:gap-6">
+                <div className="flex flex-wrap justify-end gap-4 tracking-tighter">
                     <Link
                         href="/"
                         className={`${pathname === '/' ? 'cursor-default bg-gray-light text-dark dark:bg-gray-semi/25 dark:text-gray-light' : 'bg-white text-gray-dark dark:bg-dark dark:text-gray-dark'} rounded px-5 py-2 transition-transform active:scale-95`}

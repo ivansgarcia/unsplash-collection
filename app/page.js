@@ -24,34 +24,36 @@ export default function Home() {
         router.push(`/results?show=${params}&page=1`);
     };
     return (
-        <main className="flex gap-4 py-20 text-sm md:gap-8 dark:bg-dark">
+        <main className="flex justify-between gap-4 py-[4rem] text-sm dark:bg-dark ">
             <Image
                 priority
-                className="w-6 object-cover object-right md:w-1/6"
+                className="w-[8%] object-cover object-left sm:w-[15%] md:-ml-4 lg:w-[28%]"
                 src={heroLeft}
                 alt="left decoration"
                 width={537}
                 height={797}
             />
-            <div className="flex h-[600px] w-full flex-col items-center justify-center gap-4 text-center lg:p-8 dark:text-gray-dark">
-                <h1 className="text-4xl font-semibold dark:text-gray-semi">
+            <div className="flex h-[360px] flex-col items-center justify-center gap-3 pt-5 text-center tracking-[-0.1em] dark:text-gray-dark md:w-1/2">
+                <h1 className="-ml-4 text-4xl font-semibold dark:text-gray-semi">
                     Search
                 </h1>
-                <p>Search high-resolution images from Unsplash</p>
+                <p className="-ml-4 tracking-tighter">
+                    Search high-resolution images from Unsplash
+                </p>
                 <input
                     onKeyDown={(e) => e.key === 'Enter' && findParams(search)}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="my-2 w-full rounded-lg border border-gray-light bg-[url('../public/Search.svg')] bg-auto bg-[center_right_1rem] bg-no-repeat p-4 shadow dark:border-gray-dark dark:bg-gray-dark/25 dark:bg-[url('../public/Search-dark.svg')] dark:text-gray-semi focus:dark:outline focus:dark:outline-gray-dark"
+                    className="m-2 w-full max-w-[94%] rounded-lg border border-gray-light bg-[url('../public/Search.svg')] bg-auto bg-[center_right_1rem] bg-no-repeat p-4 tracking-tighter shadow dark:border-gray-dark dark:bg-gray-dark/25 dark:bg-[url('../public/Search-dark.svg')] dark:text-gray-semi focus:dark:outline focus:dark:outline-gray-dark"
                     type="text"
                     placeholder="Enter your keywords..."
                 />
             </div>
             <Image
                 priority
-                className="mt-16 w-6 object-cover object-left md:w-1/6"
+                className="-mr-4 w-[8%] object-cover object-right sm:w-[15%] lg:w-[28%]"
                 src={heroRight}
-                alt="left decoration"
+                alt="right decoration"
                 width={537}
                 height={797}
             />

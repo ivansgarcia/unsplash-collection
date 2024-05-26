@@ -88,7 +88,7 @@ const Results = () => {
                                             alt={result.description ?? ''}
                                             width={result.width}
                                             height={result.height}
-                                            className="mb-6 h-auto w-full rounded bg-gradient-to-br from-gray-dark to-gray-light transition-transform hover:scale-105 active:scale-95 md:active:scale-100 dark:from-dark dark:to-gray-dark"
+                                            className="mb-6 h-auto w-full rounded bg-gradient-to-br from-gray-dark to-gray-light transition-transform hover:scale-105 active:scale-95 dark:from-dark dark:to-gray-dark md:active:scale-100"
                                         />
                                     </Link>
                                 </li>

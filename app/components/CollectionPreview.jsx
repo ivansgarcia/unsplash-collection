@@ -41,6 +41,7 @@ const CollectionPreview = ({ photos, setError }) => {
             {previewImages
                 .map((image, index) => (
                     <Image
+                        priority
                         key={index}
                         className={`${index === 0 && 'row-span-2'} ${
                             size === 2 && 'row-span-2'
